@@ -1,26 +1,22 @@
 {
-	"name": "marvin255/serviform-bitrix",
-	"description": "Serviform's fields set for bitrix",
-	"type": "library",
-	"keywords": ["php", "forms"],
-	"license": "MIT",
-	"require": {
-		"php": ">=5.4.0"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "*"
-	},
-	"autoload": {
-		"psr-4": { "serviform\\bitrix\\": "src/" }
-	},
-	"repositories": [
-		{
-			"type": "git",
-			"url": "https://github.com/marvin255/serviform-bitrix"
-		},
-		{
-			"type": "git",
-			"url": "https://github.com/marvin255/serviform"
-		}
-	]
+    "name": "marvin255/serviform-bitrix",
+    "description": "Serviform's fields set for bitrix",
+    "type": "library",
+    "keywords": ["php", "forms"],
+    "license": "MIT",
+    "require": {
+        "marvin255/serviform": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": { "serviform\\bitrix\\": "src/" }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/marvin255/serviform-bitrix"
+        }
+    ]
 }
