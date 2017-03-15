@@ -11,7 +11,8 @@
         "phpunit/phpunit": "*"
     },
     "autoload": {
-        "psr-4": { "serviform\\bitrix\\": "src/" }
+        "psr-4": { "serviform\\bitrix\\": "src/" },
+        "files": [ "src/inject_plugin.php" ]
     },
     "repositories": [
         {
