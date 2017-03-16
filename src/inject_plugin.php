@@ -26,3 +26,10 @@ FactoryValidators::setDescription(
     'bitrix.captcha',
     ['type' => '\marvin255\serviform\bitrix\captcha\Validator']
 );
+
+
+//inject bitrix ormunique validator
+FactoryValidators::setDescription(
+    'bitrix.ormunique',
+    ['type' => '\marvin255\serviform\bitrix\ormunique\Validator']
+);
