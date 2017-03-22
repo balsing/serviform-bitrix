@@ -26,6 +26,9 @@ class Validator extends AbstractValidator
                 "=" . $field => $value,
             ],
         ];
+        if ($this->getIgnoreFilter()) {
+            $query['filter'] = array_merge($this->getIgnoreFilter(), $query['filter']);
+        }
 
         return empty($orm::getRow($query));
     }
@@ -34,11 +37,6 @@ class Validator extends AbstractValidator
      * @var string
      */
     protected $orm = null;
-
-    /**
-     * @var string
-     */
-    protected $field = null;
 
     /**
      * @return string
@@ -61,6 +59,11 @@ class Validator extends AbstractValidator
     }
 
     /**
+     * @var string
+     */
+    protected $field = null;
+
+    /**
      * @return string
      */
     public function getField()
@@ -76,6 +79,31 @@ class Validator extends AbstractValidator
     public function setField($value)
     {
         $this->field = $value;
+
+        return $this;
+    }
+
+    /**
+     * @var string
+     */
+    protected $ignoreFilter = null;
+
+    /**
+     * @return array
+     */
+    public function getIgnoreFilter()
+    {
+        return $this->ignoreFilter;
+    }
+
+    /**
+     * @param array $value
+     *
+     * @return \marvin255\serviform\bitrix\ormunique\Validator
+     */
+    public function setIgnoreFilter(array $value)
+    {
+        $this->ignoreFilter = $value;
 
         return $this;
     }
