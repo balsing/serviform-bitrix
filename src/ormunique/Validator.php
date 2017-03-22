@@ -13,6 +13,14 @@ class Validator extends AbstractValidator
      * @var string
      */
     protected $message = 'Field "#label#" is not unique';
+    /**
+     * @var bool
+     */
+    protected $skipOnError = true;
+    /**
+     * @var bool
+     */
+    protected $skipOnEmpty = true;
 
     /**
      * @inheritdoc
@@ -20,7 +28,7 @@ class Validator extends AbstractValidator
     protected function vaidateValue($value, $element)
     {
         $orm = $this->getOrm();
-        $field = $this->getField();
+        $field = $this->getField() ? $this->getField() : $element->getName();
         $query = [
             'filter' => [
                 "=" . $field => $value,
