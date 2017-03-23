@@ -18,8 +18,18 @@ class Field extends AbstractField
         $attrubutes = $this->getAttributes();
         $attrubutes['value'] = bitrix_sessid();
         $attrubutes['name'] = $this->getNameChainString();
-        $attrubutes['type'] = 'hidden';
 
         return Html::createTag('input', $attrubutes, false);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getAttributes()
+    {
+        $return = parent::getAttributes();
+        $return['type'] = 'hidden';
+
+        return $return;
     }
 }
