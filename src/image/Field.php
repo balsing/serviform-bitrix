@@ -3,13 +3,13 @@
 namespace marvin255\serviform\bitrix\image;
 
 use marvin255\serviform\helpers\Html;
-use marvin255\serviform\abstracts\Field as AbstractField;
+use marvin255\serviform\fields\File;
 use CFile;
 
 /**
  * Bitrix file field
  */
-class Field extends AbstractField
+class Field extends File
 {
     /**
      * @return string
@@ -58,19 +58,11 @@ class Field extends AbstractField
      */
     public function getValue()
     {
-        $values = $_FILES;
-        $arName = $this->getFullName();
-        foreach ($arName as $name) {
-            if (isset($values[$name])) {
-                $values = $values[$name];
-            } else {
-                $values = null;
-            }
-        }
+        $values = parent::getValue();
         if (!empty($values) && $values['error'] != 4) {
             return $values;
         } else {
-            $parentValue = parent::getValue();
+            $parentValue = $this->value;
             return isset($parentValue['del']) ? ['del' => 'Y'] : null;
         }
     }
