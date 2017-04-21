@@ -38,6 +38,14 @@ class Field extends File
         $attributes['name'] = $this->getNameChainString();
         $render .= Html::createTag('input', $attributes, false);
 
+        if ($description = $this->getDescription()) {
+            $attributesDescription = $this->getAttributes();
+            $attributesDescription['type'] = isset($description['type']) ? $description['type'] : 'text';
+            $attributesDescription['name'] = isset($description['name']) ? $description['name'] : $this->getNameChainString() . '[description]';
+            $attributesDescription['placeholder'] = isset($description['placeholder']) ? $description['placeholder'] : '';
+            $render .= Html::createTag('input', $attributesDescription, false);
+        }
+
         return Html::createTag('div', $this->getContainerAttributes(), $render);
     }
 
@@ -218,5 +226,30 @@ class Field extends File
     public function getContainerAttributes()
     {
         return $this->containerAttributes;
+    }
+
+    /**
+     * @var array
+     */
+    protected $description = [];
+
+    /**
+     * @param array $value
+     *
+     * @return \marvin255\serviform\bitrix\image\Field
+     */
+    public function setDescription($value)
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
