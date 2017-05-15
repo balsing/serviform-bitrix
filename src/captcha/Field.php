@@ -15,24 +15,18 @@ class Field extends AbstractField
      */
     public function renderInternal()
     {
-        global $APPLICATION;
-        $value = $this->getValue();
-        if (!empty($value['sid'])) {
-            $code = $value['sid'];
-        } else {
-            $code = $APPLICATION->CaptchaGetCode();
-        }
+        $captcha = $this->getCaptcha();
         $sid_name = $this->getNameChainString() . '[sid]';
         $word_name = $this->getNameChainString() . '[word]';
 
         $return = Html::createTag('input', [
             'type' => 'hidden',
             'name' => $sid_name,
-            'value' => $code,
+            'value' => $captcha['sid'],
         ], false);
 
         $return .= Html::createTag('img', [
-            'src' => "/bitrix/tools/captcha.php?captcha_sid={$code}",
+            'src' => $captcha['src'],
         ], false);
 
         $attributes = $this->getAttributes();
@@ -43,6 +37,29 @@ class Field extends AbstractField
         $return = Html::createTag('div', $this->getContainerAttributes(), $return);
 
         return $return;
+    }
+
+    /**
+     * @var array
+     */
+    protected $captchaCode = null;
+
+    /**
+     * @return array
+     */
+    protected function getCaptcha()
+    {
+        if ($this->captchaCode === null) {
+            global $APPLICATION;
+            $value = $this->getValue();
+            $code = empty($value['sid']) ? $APPLICATION->CaptchaGetCode() : $value['sid'];
+            $this->captchaCode = [
+                'sid' => $code,
+                'src' => "/bitrix/tools/captcha.php?captcha_sid={$code}",
+            ];
+        }
+
+        return $this->captchaCode;
     }
 
     /**
@@ -64,5 +81,17 @@ class Field extends AbstractField
     public function getContainerAttributes()
     {
         return $this->containerAttributes;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function jsonSerialize()
+    {
+        $return = parent::jsonSerialize();
+        $return['type'] = 'captcha';
+        $return['captcha'] = $this->getCaptcha();
+
+        return $return;
     }
 }
