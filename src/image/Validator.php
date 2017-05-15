@@ -17,6 +17,8 @@ class Validator extends File
      */
     protected function vaidateValue($value, $element)
     {
-        return !empty($value['del']) ? true : parent::vaidateValue($value, $element);
+        return !empty($value['del']) || (empty($value['tmp_name']) && array_key_exists('description', $value))
+            ? true
+            : parent::vaidateValue($value, $element);
     }
 }

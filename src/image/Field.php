@@ -38,6 +38,15 @@ class Field extends File
         $attributes['name'] = $this->getNameChainString();
         $render .= Html::createTag('input', $attributes, false);
 
+        if ($description = $this->getDescription()) {
+            $attributesDescription = $this->getAttributes();
+            $attributesDescription['value'] = isset($file['DESCRIPTION']) ? $file['DESCRIPTION'] : '';
+            $attributesDescription['type'] = isset($description['type']) ? $description['type'] : 'text';
+            $attributesDescription['name'] = isset($description['name']) ? $description['name'] : $this->getNameChainString() . '[description]';
+            $attributesDescription['placeholder'] = isset($description['placeholder']) ? $description['placeholder'] : '';
+            $render .= Html::createTag('input', $attributesDescription, false);
+        }
+
         return Html::createTag('div', $this->getContainerAttributes(), $render);
     }
 
@@ -58,13 +67,22 @@ class Field extends File
      */
     public function getValue()
     {
+        $return = null;
         $values = parent::getValue();
+        $parentValue = $this->value;
+
         if (!empty($values) && $values['error'] != 4) {
-            return $values;
-        } else {
-            $parentValue = $this->value;
-            return isset($parentValue['del']) ? ['del' => 'Y'] : null;
+            $return = $values;
+            $return['description'] = isset($parentValue['description'])
+                ? $parentValue['description']
+                : null;
+        } elseif (isset($parentValue['del'])) {
+            $return = ['del' => 'Y'];
+        } elseif (!empty($parentValue['description'])) {
+            $return = ['description' => $parentValue['description']];
         }
+
+        return $return;
     }
 
     /**
@@ -92,7 +110,7 @@ class Field extends File
             $return = $arFile;
         }
 
-        return $arFile;
+        return $return;
     }
 
     /**
@@ -218,5 +236,30 @@ class Field extends File
     public function getContainerAttributes()
     {
         return $this->containerAttributes;
+    }
+
+    /**
+     * @var array
+     */
+    protected $description = [];
+
+    /**
+     * @param array $value
+     *
+     * @return \marvin255\serviform\bitrix\image\Field
+     */
+    public function setDescription($value)
+    {
+        $this->description = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
