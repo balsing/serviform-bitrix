@@ -6,38 +6,38 @@ use marvin255\serviform\helpers\FactoryValidators;
 //inject bitrix captcha field
 FactoryFields::setDescription(
     'bitrix.captcha',
-    ['type' => '\marvin255\serviform\bitrix\captcha\Field']
+    ['type' => '\\marvin255\\serviform\\bitrix\\captcha\\Field']
 );
 //inject bitrix captcha validator
 FactoryValidators::setDescription(
     'bitrix.captcha',
-    ['type' => '\marvin255\serviform\bitrix\captcha\Validator']
+    ['type' => '\\marvin255\\serviform\\bitrix\\captcha\\Validator']
 );
 
 //inject bitrix image validator
 FactoryFields::setDescription(
     'bitrix.image',
-    ['type' => '\marvin255\serviform\bitrix\image\Field']
+    ['type' => '\\marvin255\\serviform\\bitrix\\image\\Field']
 );
 //inject bitrix image validator
 FactoryValidators::setDescription(
     'bitrix.image',
-    ['type' => '\marvin255\serviform\bitrix\image\Validator']
+    ['type' => '\\marvin255\\serviform\\bitrix\\image\\Validator']
 );
 
 //inject bitrix ormunique validator
 FactoryValidators::setDescription(
     'bitrix.ormunique',
-    ['type' => '\marvin255\serviform\bitrix\ormunique\Validator']
+    ['type' => '\\marvin255\\serviform\\bitrix\\ormunique\\Validator']
 );
 
 //inject bitrix session field
 FactoryFields::setDescription(
     'bitrix.session',
-    ['type' => '\marvin255\serviform\bitrix\session\Field']
+    ['type' => '\\marvin255\\serviform\\bitrix\\session\\Field']
 );
 //inject bitrix session validator
 FactoryValidators::setDescription(
     'bitrix.session',
-    ['type' => '\marvin255\serviform\bitrix\session\Validator']
+    ['type' => '\\marvin255\\serviform\\bitrix\\session\\Validator']
 );
