@@ -6,7 +6,7 @@ use marvin255\serviform\helpers\Html;
 use marvin255\serviform\abstracts\Field as AbstractField;
 
 /**
- * Bitrix session field
+ * Bitrix session field.
  */
 class Field extends AbstractField
 {

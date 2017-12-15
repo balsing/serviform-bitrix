@@ -6,7 +6,7 @@ use marvin255\serviform\helpers\Html;
 use marvin255\serviform\abstracts\Field as AbstractField;
 
 /**
- * Captcha field for bitrix
+ * Captcha field for bitrix.
  */
 class Field extends AbstractField
 {

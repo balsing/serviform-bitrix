@@ -5,7 +5,7 @@ namespace marvin255\serviform\bitrix\image;
 use marvin255\serviform\validators\File;
 
 /**
- * Image validator for bitrix
+ * Image validator for bitrix.
  */
 class Validator extends File
 {

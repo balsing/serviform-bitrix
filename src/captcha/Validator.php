@@ -5,7 +5,7 @@ namespace marvin255\serviform\bitrix\captcha;
 use marvin255\serviform\abstracts\Validator as AbstractValidator;
 
 /**
- * Captcha validator for bitrix
+ * Captcha validator for bitrix.
  */
 class Validator extends AbstractValidator
 {
@@ -20,6 +20,7 @@ class Validator extends AbstractValidator
     protected function vaidateValue($value, $element)
     {
         global $APPLICATION;
+
         return !empty($value['sid'])
             && !empty($value['word'])
             && $APPLICATION->CaptchaCheckCode($value['word'], $value['sid']);

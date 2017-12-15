@@ -7,7 +7,7 @@ use marvin255\serviform\fields\File;
 use CFile;
 
 /**
- * Bitrix file field
+ * Bitrix file field.
  */
 class Field extends File
 {

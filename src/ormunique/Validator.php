@@ -5,7 +5,7 @@ namespace marvin255\serviform\bitrix\ormunique;
 use marvin255\serviform\abstracts\Validator as AbstractValidator;
 
 /**
- * Session validator for bitrix
+ * Session validator for bitrix.
  */
 class Validator extends AbstractValidator
 {
@@ -31,7 +31,7 @@ class Validator extends AbstractValidator
         $field = $this->getField() ? $this->getField() : $element->getName();
         $query = [
             'filter' => [
-                "=" . $field => $value,
+                '=' . $field => $value,
             ],
         ];
         if ($this->getIgnoreFilter()) {

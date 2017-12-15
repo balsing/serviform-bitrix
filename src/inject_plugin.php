@@ -3,7 +3,6 @@
 use marvin255\serviform\helpers\FactoryFields;
 use marvin255\serviform\helpers\FactoryValidators;
 
-
 //inject bitrix captcha field
 FactoryFields::setDescription(
     'bitrix.captcha',
@@ -14,7 +13,6 @@ FactoryValidators::setDescription(
     'bitrix.captcha',
     ['type' => '\marvin255\serviform\bitrix\captcha\Validator']
 );
-
 
 //inject bitrix image validator
 FactoryFields::setDescription(
@@ -27,13 +25,11 @@ FactoryValidators::setDescription(
     ['type' => '\marvin255\serviform\bitrix\image\Validator']
 );
 
-
 //inject bitrix ormunique validator
 FactoryValidators::setDescription(
     'bitrix.ormunique',
     ['type' => '\marvin255\serviform\bitrix\ormunique\Validator']
 );
-
 
 //inject bitrix session field
 FactoryFields::setDescription(
