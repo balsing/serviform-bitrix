@@ -23,13 +23,17 @@ class BaseForm extends CBitrixComponent
             throw new Exception('FORM_ARRAY param must be an array instance');
         }
 
-        $p['SUCCESS_REDIRECT'] = trim($p['SUCCESS_REDIRECT']) === ''
+        $p['SUCCESS_REDIRECT'] = !isset($p['SUCCESS_REDIRECT']) || trim($p['SUCCESS_REDIRECT']) === ''
             ? null
             : $p['SUCCESS_REDIRECT'];
 
-        $p['FAIL_REDIRECT'] = trim($p['FAIL_REDIRECT']) === ''
+        $p['FAIL_REDIRECT'] = !isset($p['FAIL_REDIRECT']) || trim($p['FAIL_REDIRECT']) === ''
             ? null
             : $p['FAIL_REDIRECT'];
+
+        $p['ACTION'] = !isset($p['ACTION']) || trim($p['ACTION']) === ''
+            ? null
+            : $p['ACTION'];
 
         return parent::onPrepareComponentParams($p);
     }
@@ -172,10 +176,14 @@ class BaseForm extends CBitrixComponent
      */
     protected function getAction()
     {
-        $path = Application::getInstance()
-            ->getContext()
-            ->getRequest()
-            ->getRequestedPageDirectory();
+        if ($this->arParams['ACTION']) {
+            $path = $this->arParams['ACTION'];
+        } else {
+            $path = Application::getInstance()
+                ->getContext()
+                ->getRequest()
+                ->getRequestedPageDirectory();
+        }
         $path = '/' . trim($path, '/') . '/';
 
         return $path;
