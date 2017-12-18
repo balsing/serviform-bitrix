@@ -165,6 +165,23 @@ class BaseForm extends CBitrixComponent
     }
 
     /**
+     * Возвращает параметр action для формы. По умолчанию - текущая страница
+     * без парамтеров.
+     *
+     * @return string
+     */
+    protected function getAction()
+    {
+        $path = Application::getInstance()
+            ->getContext()
+            ->getRequest()
+            ->getRequestedPageDirectory();
+        $path = '/' . trim($path, '/') . '/';
+
+        return $path;
+    }
+
+    /**
      * Возвращает массив для создания формы.
      *
      * @return array
