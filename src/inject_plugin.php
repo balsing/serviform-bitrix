@@ -14,6 +14,17 @@ FactoryValidators::setDescription(
     ['type' => '\\marvin255\\serviform\\bitrix\\captcha\\Validator']
 );
 
+//inject bitrix honey pot field
+FactoryFields::setDescription(
+    'bitrix.honeypot',
+    ['type' => '\\marvin255\\serviform\\bitrix\\honeypot\\Field']
+);
+//inject bitrix honey pot validator
+FactoryValidators::setDescription(
+    'bitrix.honeypot',
+    ['type' => '\\marvin255\\serviform\\bitrix\\honeypot\\Validator']
+);
+
 //inject bitrix image validator
 FactoryFields::setDescription(
     'bitrix.image',
