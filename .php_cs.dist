@@ -1,6 +1,10 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()->in(__DIR__);
+$finder = PhpCsFixer\Finder::create()
+    ->ignoreDotFiles(false)
+    ->ignoreVCS(true)
+    ->in(__DIR__)
+;
 
 $rules = [
     '@Symfony' => true,
