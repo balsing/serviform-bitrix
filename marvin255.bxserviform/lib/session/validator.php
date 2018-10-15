@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\serviform\bitrix\session;
+namespace marvin255\bxserviform\session;
 
 use marvin255\serviform\abstracts\Validator as AbstractValidator;
 

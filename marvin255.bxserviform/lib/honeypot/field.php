@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\serviform\bitrix\honeypot;
+namespace marvin255\bxserviform\honeypot;
 
 use marvin255\serviform\helpers\Html;
 use marvin255\serviform\abstracts\Field as AbstractField;

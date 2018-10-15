@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\serviform\bitrix\captcha;
+namespace marvin255\bxserviform\captcha;
 
 use marvin255\serviform\helpers\Html;
 use marvin255\serviform\abstracts\Field as AbstractField;

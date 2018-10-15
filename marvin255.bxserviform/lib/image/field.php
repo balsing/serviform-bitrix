@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\serviform\bitrix\image;
+namespace marvin255\bxserviform\image;
 
 use marvin255\serviform\helpers\Html;
 use marvin255\serviform\fields\File;
@@ -246,7 +246,7 @@ class Field extends File
     /**
      * @param array $value
      *
-     * @return \marvin255\serviform\bitrix\image\Field
+     * @return \marvin255\bxserviform\image\Field
      */
     public function setDescription($value)
     {

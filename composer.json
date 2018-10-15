@@ -8,11 +8,9 @@
         "marvin255/serviform": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "friendsofphp/php-cs-fixer": "~2.2"
     },
     "autoload": {
-        "psr-4": { "marvin255\\serviform\\bitrix\\": "src/" },
-        "files": [ "src/inject_plugin.php" ]
     },
     "repositories": [
         {
