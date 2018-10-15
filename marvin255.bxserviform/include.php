@@ -1,5 +1,6 @@
 <?php
 
+use Bitrix\Main\Event;
 use marvin255\serviform\helpers\FactoryFields;
 use marvin255\serviform\helpers\FactoryValidators;
 use marvin255\bxserviform;
@@ -51,3 +52,8 @@ FactoryValidators::setDescription(
     'bitrix.session',
     ['type' => bxserviform\session\Validator::class]
 );
+
+//событие, которое позволяет заполнить переводы для ошибок или определить
+//собственные поля и валидаторы
+$event = new Event('marvin255.bxserviform', 'init', []);
+$event->send();
