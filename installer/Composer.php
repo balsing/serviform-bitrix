@@ -38,6 +38,8 @@ class Composer
      */
     protected static function getInstallingFoldersPathes(Event $event)
     {
+        $modulesFolder = self::getModulesFolder($event);
+
         $libFolder = self::getLibraryFolder($event, self::$vendor, self::$module);
         $libFolder .= '/' . self::$vendor . '.' . self::$module;
 
