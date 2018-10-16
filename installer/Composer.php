@@ -40,7 +40,7 @@ class Composer
     {
         $modulesFolder = self::getModulesFolder($event);
 
-        $libFolder = self::getLibraryFolder($event, self::$vendor, self::$module);
+        $libFolder = self::getLibraryFolder($event, self::$vendor, 'serviform-bitrix');
         $libFolder .= '/' . self::$vendor . '.' . self::$module;
 
         $serviformFolder = self::getLibraryFolder($event, 'marvin255', 'serviform');
