@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\serviform\bitrix\ormunique;
+namespace marvin255\bxserviform\ormunique;
 
 use marvin255\serviform\abstracts\Validator as AbstractValidator;
 
@@ -57,7 +57,7 @@ class Validator extends AbstractValidator
     /**
      * @param string $value
      *
-     * @return \marvin255\serviform\bitrix\ormunique\Validator
+     * @return \marvin255\bxserviform\ormunique\Validator
      */
     public function setOrm($value)
     {
@@ -82,7 +82,7 @@ class Validator extends AbstractValidator
     /**
      * @param string $value
      *
-     * @return \marvin255\serviform\bitrix\ormunique\Validator
+     * @return \marvin255\bxserviform\ormunique\Validator
      */
     public function setField($value)
     {
@@ -107,7 +107,7 @@ class Validator extends AbstractValidator
     /**
      * @param array $value
      *
-     * @return \marvin255\serviform\bitrix\ormunique\Validator
+     * @return \marvin255\bxserviform\ormunique\Validator
      */
     public function setIgnoreFilter(array $value)
     {

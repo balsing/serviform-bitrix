@@ -1,26 +1,42 @@
 <?php
 
-namespace marvin255\serviform\bitrix\component;
+namespace Marvin255Bxserviform;
 
 use Bitrix\Main\Application;
 use Bitrix\Main\Mail\Event;
-use CBitrixComponent;
+use Bitrix\Main\Loader;
+use Bitrix\Main\LoaderException;
 use marvin255\serviform\helpers\FactoryFields;
+use marvin255\serviform\interfaces\Field;
+use CBitrixComponent;
+use InvalidArgumentException;
 
 /**
  * Базовый компонент для формы.
  */
-class BaseForm extends CBitrixComponent
+class Form extends CBitrixComponent
 {
     /**
-     * @inheritdoc
+     * @var \marvin255\serviform\interfaces\Field
+     */
+    protected $form;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Bitrix\Main\LoaderException
+     * @throws \InvalidArgumentException
      */
     public function onPrepareComponentParams($p)
     {
+        if (!Loader::includeModule('marvin255.bxserviform')) {
+            throw new LoaderException("Can't load module marvin255.bxserviform");
+        }
+
         if (!isset($p['FORM_ARRAY'])) {
             $p['FORM_ARRAY'] = [];
         } elseif (!is_array($p['FORM_ARRAY'])) {
-            throw new Exception('FORM_ARRAY param must be an array instance');
+            throw new InvalidArgumentException('FORM_ARRAY param must be an array instance');
         }
 
         $p['SUCCESS_REDIRECT'] = !isset($p['SUCCESS_REDIRECT']) || trim($p['SUCCESS_REDIRECT']) === ''
@@ -42,6 +58,8 @@ class BaseForm extends CBitrixComponent
      * {@inheritdoc}
      *
      * @return array
+     *
+     * @throws \Exception
      */
     public function executeComponent()
     {
@@ -85,7 +103,7 @@ class BaseForm extends CBitrixComponent
      *
      * @return bool
      */
-    protected function processForm(\marvin255\serviform\interfaces\Field $form)
+    protected function processForm(Field $form)
     {
         return (bool) $form->getErrors();
     }
@@ -121,21 +139,8 @@ class BaseForm extends CBitrixComponent
             ->getRequest()
             ->getRequestUri();
 
-        $url = $url === null
-            ? $default
-            : str_replace(
-                ['http://', 'https://', '//'],
-                '',
-                '/' . ltrim(trim($url), '/')
-            );
-
-        LocalRedirect($url);
+        LocalRedirect($url ?: $default);
     }
-
-    /**
-     * @var \marvin255\serviform\interfaces\Field
-     */
-    protected $form = null;
 
     /**
      * Возвращает объект с формой.
@@ -235,7 +240,7 @@ class BaseForm extends CBitrixComponent
      *
      * @return bool
      */
-    protected function beforeProcessForm(\marvin255\serviform\interfaces\Field $form)
+    protected function beforeProcessForm(Field $form)
     {
         return true;
     }

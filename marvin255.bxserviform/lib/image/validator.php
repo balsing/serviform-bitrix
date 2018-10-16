@@ -1,6 +1,6 @@
 <?php
 
-namespace marvin255\serviform\bitrix\image;
+namespace marvin255\bxserviform\image;
 
 use marvin255\serviform\validators\File;
 
