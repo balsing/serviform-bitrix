@@ -11,6 +11,9 @@
         "friendsofphp/php-cs-fixer": "~2.2"
     },
     "autoload": {
+        "psr-4": {
+            "marvin255\\bxserviform\\installer\\": "installer/"
+        }
     },
     "repositories": [
         {
